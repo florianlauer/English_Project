@@ -22,3 +22,22 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+  $stateProvider
+
+  .state('/', {
+      url: '/',
+      templateUrl: 'templates/index.html'
+  })
+  .state('question', {
+    url: '/question',
+    templateUrl: 'templates/question.html',
+  })
+
+
+  $urlRouterProvider.otherwise('/')
+
+}]);
