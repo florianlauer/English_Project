@@ -31,6 +31,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 
   .state('/', {
       url: '/',
+      templateUrl: 'templates/welcome.html'
+  })
+  .state('menu', {
+      url: '/menu',
       templateUrl: 'templates/menu.html'
   })
   .state('question', {
