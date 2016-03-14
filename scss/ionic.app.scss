@@ -15,15 +15,45 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-.menu-button {
-  line-height: 150px !important;
-}
+
 
 .no-padding{
  padding:3px !important;
 }
 
 
+
+
+
+.welcome_footer{
+position : absolute;
+bottom:0px;
+color : red;
+width:100%;
+}
+
+.grid_layout{
+	
+.row{
+	height : 50%;
+		.col{
+			height : 100%;
+
+			
+			.menu-button{
+				padding : 0px;
+				height : 100%;
+
+			}
+		}
+}	
+
+	height: 50%;
+	position : absolute; 
+	bottom : 0px;
+	height : 50%;
+	width: 100%;
+}
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;

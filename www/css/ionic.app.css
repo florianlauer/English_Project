@@ -15,11 +15,28 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
-.menu-button {
-  line-height: 150px !important; }
-
 .no-padding {
   padding: 3px !important; }
+
+.welcome_footer {
+  position: absolute;
+  bottom: 0px;
+  color: red;
+  width: 100%; }
+
+.grid_layout {
+  height: 50%;
+  position: absolute;
+  bottom: 0px;
+  height: 50%;
+  width: 100%; }
+  .grid_layout .row {
+    height: 50%; }
+    .grid_layout .row .col {
+      height: 100%; }
+      .grid_layout .row .col .menu-button {
+        padding: 0px;
+        height: 100%; }
 
 /*!
   Ionicons, v2.0.1
