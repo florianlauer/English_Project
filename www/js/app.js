@@ -41,9 +41,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     url: '/question',
     templateUrl: 'templates/question.html',
   })
-  .state('rules', {
-    url: '/rules',
-    templateUrl: 'templates/rules.html',
+  .state('rules_1', {
+    url: '/rules_1',
+    templateUrl: 'templates/rules_1.html',
+  })
+  .state('rules_2', {
+    url: '/rules_2',
+    templateUrl: 'templates/rules_2.html',
   })
 
   $urlRouterProvider.otherwise('/')
