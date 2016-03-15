@@ -33,26 +33,33 @@ width:100%;
 }
 
 .grid_layout{
-	
+
 .row{
 	height : 50%;
 		.col{
 			height : 100%;
 
-			
+
 			.menu-button{
 				padding : 0px;
 				height : 100%;
 
 			}
 		}
-}	
+}
 
 	height: 50%;
-	position : absolute; 
+	position : absolute;
 	bottom : 0px;
 	height : 50%;
 	width: 100%;
+}
+
+
+.footer-play{
+  position : absolute;
+  bottom:0px;
+  width:100%;
 }
 
 // The path for our ionicons font files, relative to the built CSS in www/css

@@ -38,6 +38,11 @@ $dark:                            #444 !default;
         padding: 0px;
         height: 100%; }
 
+.footer-play {
+  position: absolute;
+  bottom: 0px;
+  width: 100%; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
