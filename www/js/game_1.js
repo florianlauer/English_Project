@@ -1,6 +1,25 @@
 
 var game1 =  angular.module('game1', []);
 var questionPassed = [];
+var score = 0;
+var remaining = 10;
+var englishTokens = ['is', 
+'the',
+'to',
+'a',
+'of',
+"don't",
+"do",
+'in',
+'as',
+'at',
+'/',
+'by',
+'.',
+'from',
+' ',
+'it',
+'']
 
 var expressions = [
 {'english' : 'A bitter pill', 'french' : ' Une situation ou information qui est n\'est pas agréable mais qui doit être acceptée.'},
@@ -37,7 +56,7 @@ var expressions = [
 {'english' : 'Fit as a fiddle', 'french' : ' Être en bonne santé physique.'},
 {'english' : 'For a song', 'french' : ' Presque gratuit ou peu cher.'},
 {'english' : 'From A to Z', 'french' : ' Couvrant une gamme complète / Globalement.'},
-{'english' : 'From scratch / to make from scratch', 'french' : ' Faire quelque chose à partir de zero / Commencer par le début, sans préparation ou aide préalable.'},
+{'english' : 'To make from scratch', 'french' : ' Faire quelque chose à partir de zero. Se dit aussi "From scratch" '},
 {'english' : 'Get bent out of shape', 'french' : ' S\'énerver à propos de quelque chose qui ne peut être évité.'},
 {'english' : 'Have a blast', 'french' : ' Passer un bon moment ou se faire plaisir.'},
 {'english' : 'Have eyes in the back of one\'s head ', 'french' : ' Quelqu\'un peut percevoir des choses ou des événements qui sont en dehors de son champ de vision / Avoir des yeux derrière la tête.'},
@@ -46,7 +65,7 @@ var expressions = [
 {'english' : 'Kick the bucket', 'french' : ' Euphémisme pour mourir.'},
 {'english' : 'Let the cat out of the bag ', 'french' : ' Révéler un secret.'},
 {'english' : 'Off the hook', 'french' : ' Echapper à ses responsabilités ou à une obligation ou (moins souvent) à un danger.'},
-{'english' : 'Piece of cake ', 'french' : ' Un travail, une tâche ou une autre activité qui est agréable et donc facile à réaliser.'},
+{'english' : 'Piece of cake', 'french' : ' Un travail, une tâche ou une autre activité qui est agréable et donc facile à réaliser.'},
 {'english' : 'Pull somebody\'s leg', 'french' : ' Taquiner ou plaisanter en disant un mensonge.'},
 {'english' : 'Pushing up daisies', 'french' : ' Euphémisme pour mourir.'},
 {'english' : 'Put the cat among the pigeons', 'french' : ' Créer une perturbation et causer des problèmes.'},
@@ -69,13 +88,23 @@ var expressions = [
 game1.controller('game1Ctrl', function ($scope) {
   
 
-	$scope.questions = [{'english' : 'Poop', 'french' : 'Poop'},{'english' : 'Poop', 'french' : 'Poop'}]
-	$scope.questions.push(selectQuestion());
+	$scope.score = score;
+	$scope.remaining = remaining;
+	$scope.question = selectQuestion();
 
 
 
+$scope.answer = function answer(answer){
+	
+	if(answer == $scope.question.response){
+		console.log('Well done !');
+		$scope.score++;
+		$scope.question = selectQuestion();
+	}
 
+	$scope.remaining--;
 
+}
 
 
 
@@ -83,20 +112,112 @@ function selectQuestion() {
 
 
 
-	var randId = Math.floor(Math.random() * expressions.length);
+	var randQuestionId = Math.floor(Math.random() * expressions.length);
 
 
-	while(questionPassed.indexOf(randId) != -1){
+	while(questionPassed.indexOf(randQuestionId) != -1){
 
-		randId = Math.floor(Math.random() * expressions.length);
+		randQuestionId = Math.floor(Math.random() * expressions.length);
 
 	}
 
-	questionPassed.push(randId);
+	questionPassed.push(randQuestionId);
 
-	return expressions[randId];
+	var expressionTab = expressions[randQuestionId].english.split(' ');
+
+
+	var wordRem = 0;
+	var answers;
+
+	while(wordRem == 0){	//Searching for the word to remove
+		
+		randId = Math.floor(Math.random() * expressionTab.length);
+
+		if(englishTokens.indexOf(expressionTab[randId]) == -1){ // The word is not 'the' or 'is'...
+			
+			wordRem = 1;
+			answers = [expressionTab[randId].toLowerCase(), '', '', '']; //Here we set the right answer
+			expressionTab[randId] = '..'; // And replace the missing word with ...
+			
+		}
+
+
+	}
+	
+	
+		
+
+	var question = '';	//Here we concatenate the question in a single string
+
+	var i = 0;
+
+	for(i = 0; i < expressionTab.length; i++){
+
+		question = question + ' ' + expressionTab[i];   
+	
+	}
+
+	//Now it's time to set the other answers : 
+
+	var randWord = '';
+	var attempts = 0;
+
+	for(i = 1; i < 4; i++ ){
+
+			do{
+
+				randId = Math.floor(Math.random() * expressions.length);
+				attempts = 0;
+
+			do{
+
+				randWord = (expressions[randId].english).split(' ')[Math.floor(Math.random() * (expressions[randId].english).split(' ').length)].toLowerCase();
+				attempts++;
+				
+
+			}while(englishTokens.indexOf(randWord) != -1 || randWord == answers[0] && attempts < 10)
+
+
+
+		}while(randId == randQuestionId)
+
+	
+			answers[i] = randWord.replace('.', '').toLowerCase();
+
+
+	}
+
+	var mixAnswers = ['','','',''];
+	var mixedAnswers = [];
+	i = 0;
+
+	while(mixedAnswers.length < 4){
+		
+		
+		do{
+
+			randId = Math.floor(Math.random() * 4);
+		
+		}while(mixedAnswers.indexOf(randId) != -1)
+
+
+
+		
+		
+		mixedAnswers.push(randId);
+		mixAnswers[randId] = answers[i];
+		i++;
+	}
+
+	
+	var goodAnsId = mixAnswers.indexOf(answers[0]);
+
+	console.log(question + ' : ' + mixAnswers[0] + ' : ' + mixAnswers[1]  + ' : ' + mixAnswers[2] + ' : ' + mixAnswers[3] + ':' + goodAnsId );
+	return {'question' : question, 'answers' : mixAnswers, 'response' : goodAnsId};
+
+	}
+
 
 }
 
-
-});
+);
