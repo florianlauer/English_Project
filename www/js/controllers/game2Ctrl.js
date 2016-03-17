@@ -1,10 +1,9 @@
 
 app.controller('game2Ctrl', function ($scope, bddFactory) {
 
-		$scope.question =  bddFactory.expressions;
-		$scope.question;
-		console.log(bddFactory.expressions[5]);
-
+		var questions =  bddFactory.getExpressions();
+		$scope.questions = questions;
+		console.log(questions);
 
 
 

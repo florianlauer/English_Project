@@ -1,9 +1,12 @@
 
-var game1 =  angular.module('game1', []);
+//var game1 =  angular.module('game1', []);
+
+app.controller('game1Ctrl', function ($scope) {
+
 var questionPassed = [];
 var score = 0;
 var remaining = 10;
-var englishTokens = ['is', 
+var englishTokens = ['is',
 'the',
 'to',
 'a',
@@ -85,8 +88,7 @@ var expressions = [
 ];
 
 
-app.controller('game1Ctrl', function ($scope) {
-  
+
 
   $scope.score = score;
   $scope.remaining = remaining;
@@ -95,7 +97,7 @@ app.controller('game1Ctrl', function ($scope) {
 
 
 $scope.answer = function answer(answer){
-  
+
   if(answer == $scope.question.response){
     console.log('Well done !');
     $scope.score++;
@@ -130,22 +132,22 @@ function selectQuestion() {
   var answers;
 
   while(wordRem == 0){  //Searching for the word to remove
-    
+
     randId = Math.floor(Math.random() * expressionTab.length);
 
     if(englishTokens.indexOf(expressionTab[randId]) == -1){ // The word is not 'the' or 'is'...
-      
+
       wordRem = 1;
       answers = [expressionTab[randId].toLowerCase(), '', '', '']; //Here we set the right answer
       expressionTab[randId] = '..'; // And replace the missing word with ...
-      
+
     }
 
 
   }
-  
-  
-    
+
+
+
 
   var question = '';  //Here we concatenate the question in a single string
 
@@ -153,11 +155,11 @@ function selectQuestion() {
 
   for(i = 0; i < expressionTab.length; i++){
 
-    question = question + ' ' + expressionTab[i];   
-  
+    question = question + ' ' + expressionTab[i];
+
   }
 
-  //Now it's time to set the other answers : 
+  //Now it's time to set the other answers :
 
   var randWord = '';
   var attempts = 0;
@@ -173,7 +175,7 @@ function selectQuestion() {
 
         randWord = (expressions[randId].english).split(' ')[Math.floor(Math.random() * (expressions[randId].english).split(' ').length)].toLowerCase();
         attempts++;
-        
+
 
       }while(englishTokens.indexOf(randWord) != -1 || randWord == answers[0] && attempts < 10)
 
@@ -181,7 +183,7 @@ function selectQuestion() {
 
     }while(randId == randQuestionId)
 
-  
+
       answers[i] = randWord.replace('.', '').toLowerCase();
 
 
@@ -192,24 +194,24 @@ function selectQuestion() {
   i = 0;
 
   while(mixedAnswers.length < 4){
-    
-    
+
+
     do{
 
       randId = Math.floor(Math.random() * 4);
-    
+
     }while(mixedAnswers.indexOf(randId) != -1)
 
 
 
-    
-    
+
+
     mixedAnswers.push(randId);
     mixAnswers[randId] = answers[i];
     i++;
   }
 
-  
+
   var goodAnsId = mixAnswers.indexOf(answers[0]);
 
   console.log(question + ' : ' + mixAnswers[0] + ' : ' + mixAnswers[1]  + ' : ' + mixAnswers[2] + ' : ' + mixAnswers[3] + ':' + goodAnsId );
@@ -218,6 +220,7 @@ function selectQuestion() {
   }
 
 
-}
 
-);
+
+
+});

@@ -62,6 +62,15 @@ width:100%;
   width:100%;
 }
 
+.game_2-layout{
+  height : 30%;
+  .game_2-button{
+    padding: 3px;
+    border : 1px solid orange;
+    color: yellow;
+  }
+}
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 

@@ -43,6 +43,13 @@ $dark:                            #444 !default;
   bottom: 0px;
   width: 100%; }
 
+.game_2-layout {
+  height: 30%; }
+  .game_2-layout .game_2-button {
+    padding: 3px;
+    border: 1px solid orange;
+    color: yellow; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
