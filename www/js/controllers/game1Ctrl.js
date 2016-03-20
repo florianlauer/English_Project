@@ -1,7 +1,7 @@
 
 //var game1 =  angular.module('game1', []);
 
-app.controller('game1Ctrl', function ($scope) {
+app.controller('game1Ctrl', function ($scope, $ionicPopup) {
 
 var questionPassed = [];
 var score = 0;
@@ -98,14 +98,27 @@ var expressions = [
 
 $scope.answer = function answer(answer){
 
+  var message;
+
   if(answer == $scope.question.response){
-    console.log('Well done !');
     $scope.score++;
-    $scope.question = selectQuestion();
-  }
+    
+   
+    message = {
+     template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-checkmark-round" style = "color: green; font-weight : 60px; font-size : 30px;"></span> ' + expressions[$scope.question.id].english + '</p> <br/>  <p>' + expressions[$scope.question.id].french + '</p>',
+
+   };
+
+  }else{
+    message = {
+     template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + expressions[$scope.question.id].english  + '</p> <br/><p> <span style="text-decoration: line-through;"">' + $scope.question.answers[answer] + '</span>  <span class="icon ion-arrow-right-c" style="color: green;"></span> ' + $scope.question.answers[$scope.question.response] + ' </p>  <p>' + expressions[$scope.question.id].french + '</p> <br/> ',
+
+   };
+  } 
+  $ionicPopup.alert(message);
 
   $scope.remaining--;
-
+  $scope.question = selectQuestion();
 }
 
 
@@ -215,7 +228,7 @@ function selectQuestion() {
   var goodAnsId = mixAnswers.indexOf(answers[0]);
 
   console.log(question + ' : ' + mixAnswers[0] + ' : ' + mixAnswers[1]  + ' : ' + mixAnswers[2] + ' : ' + mixAnswers[3] + ':' + goodAnsId );
-  return {'question' : question, 'answers' : mixAnswers, 'response' : goodAnsId};
+  return {'question' : question, 'answers' : mixAnswers, 'response' : goodAnsId, 'id' : randQuestionId};
 
   }
 
