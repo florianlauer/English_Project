@@ -22,9 +22,7 @@ $dark:                            #444 !default;
   position: absolute;
   bottom: 0px;
   color: red;
-  width: 100%;
-  height : 40%;
-  }
+  width: 100%; }
 
 .grid_layout {
   height: 50%;
@@ -32,14 +30,14 @@ $dark:                            #444 !default;
   bottom: 0px;
   height: 50%;
   width: 100%; 
-  background-color : #535267;}
+background-color: #535267;}
   .grid_layout .row {
     height: 50%; }
     .grid_layout .row .col {
       height: 100%; }
       .grid_layout .row .col .menu-button {
-        background-color : #333340;
         padding: 0px;
+        background-color: #333340;
         height: 100%; }
 
 .footer-play {

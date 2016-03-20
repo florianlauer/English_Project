@@ -88,8 +88,6 @@ var expressions = [
 ];
 
 
-
-
   $scope.score = 0;
   $scope.remaining = 10;
   $scope.question = selectQuestion();
@@ -106,24 +104,37 @@ $scope.answer = function answer(answer){
      template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span> CONGRATULATIONS <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span></p><p>SCORE : '+ $scope.score +'</p>',
 
    };
-    $ionicPopup.alert(endMessage);
+    
 
-    $state.go('rules_1');
 
 
     var scoreToStore = $scope.score;
-    
-    window.localStorage.setItem( `score_game_1`, JSON.stringify(scoreToStore));
 
+
+
+    if(JSON.parse( window.localStorage.getItem( `score_game_1` )) == null || window.localStorage.getItem( `score_game_1` ) < $scope.score)
+    {
+        
+        window.localStorage.setItem( `score_game_1`, JSON.stringify($scope.score));
+        endMessage.template = 'BEST SCORE !' + endMessage.template;
+
+    }
     
+    $ionicPopup.alert(endMessage);    
+  
+    $state.go('rules_1');
+    $scope.score = 0;
+    $scope.remaining = 10;
+
+  }else{
+
+    $scope.remaining--;
 
   }
 
 
 
-
-
-      var message;
+  var message;
 
   if(answer == $scope.question.response){
     $scope.score++;
@@ -143,8 +154,7 @@ $scope.answer = function answer(answer){
   $ionicPopup.alert(message);
 
   $scope.question = selectQuestion();
-    $scope.remaining--;
-
+  
 
 }
 

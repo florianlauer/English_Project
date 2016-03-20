@@ -44,6 +44,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   .state('rules_1', {
     url: '/rules_1',
     templateUrl: 'templates/rules_1.html',
+    controller: 'rules1Ctrl'
   })
   .state('rules_2', {
     url: '/rules_2',

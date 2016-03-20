@@ -1,19 +1,12 @@
-<ion-view view-title="Rules">
+<ion-view view-title="Rules" ng-controller="rules1Ctrl">
 
-<script src="js/game_1.js"></script>
+<ion-content class="" style = "background-color:#26262f;">
 
-<ion-content class="padding">
+	<img class="" src="img/rules_1.png" style="position:absolute; top: 0px;left:2.5%;width : 95%;max-width : 600px; ">
 
-	<img class="full-image" src="img/ionic.png">
+	<p></p>
 
-	<script>
-app.controller('rules1Ctrl', function ($scope){
-	
-
-	var bestScore = JSON.parse( window.localStorage.getItem( `score_game_1` ));
-
-}
-	</script>
+	<p style = "color : white;text-align : center;">{{bestScore}}</p>
 
 </ion-content>
 
