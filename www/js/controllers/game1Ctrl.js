@@ -1,7 +1,7 @@
 
 //var game1 =  angular.module('game1', []);
 
-app.controller('game1Ctrl', function ($scope, $ionicPopup) {
+app.controller('game1Ctrl', function ($scope, $ionicPopup, $state) {
 
 var questionPassed = [];
 var score = 0;
@@ -90,15 +90,40 @@ var expressions = [
 
 
 
-  $scope.score = score;
-  $scope.remaining = remaining;
+  $scope.score = 0;
+  $scope.remaining = 10;
   $scope.question = selectQuestion();
 
 
 
 $scope.answer = function answer(answer){
 
-  var message;
+
+
+
+  if($scope.remaining == 1){
+    var endMessage = {
+     template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span> CONGRATULATIONS <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span></p><p>SCORE : '+ $scope.score +'</p>',
+
+   };
+    $ionicPopup.alert(endMessage);
+
+    $state.go('rules_1');
+
+
+    var scoreToStore = $scope.score;
+    
+    window.localStorage.setItem( `score_game_1`, JSON.stringify(scoreToStore));
+
+    
+
+  }
+
+
+
+
+
+      var message;
 
   if(answer == $scope.question.response){
     $scope.score++;
@@ -117,9 +142,12 @@ $scope.answer = function answer(answer){
   } 
   $ionicPopup.alert(message);
 
-  $scope.remaining--;
   $scope.question = selectQuestion();
+    $scope.remaining--;
+
+
 }
+
 
 
 
