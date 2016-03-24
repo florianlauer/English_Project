@@ -9,24 +9,24 @@
     <div class="cards" style="background-color: #535267">
     <div class="card" >
       <div class="item item-text-wrap" style="background-color : orange; color: white; font-size: 150%;font-weight: bold;">
-        {{questions[0].english}}
+        {{question.question.english}}
       </div>
     </div>
     <div class="card">
       <div class="item item-text-wrap" style="background-color : orange; color: white; font-size: 150%;font-weight: bold;">
-        {{questions[0].french}}
+        {{question.response}}
       </div>
     </div>
   </div>
 
   <div class="answer-button">
 
-    <button class="button choice-button">
-      Right
-    </button>
-    <button class="button choice-button">
-      Wrong
-    </button>
+    <img class="button choice-button" src="/img/Right.png" ng-click="answer()">
+
+  </img>
+    <img class="button choice-button" src="/img/Wrong.png" ng-click="answer()">
+
+  </img>
 
   </div>
   </body>
