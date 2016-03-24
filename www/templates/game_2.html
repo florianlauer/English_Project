@@ -1,23 +1,37 @@
 
 
-<ion-view view-title="Menu" hide-back-button="true">
+<ion-view view-title="Game 2" hide-back-button="true">
 
-<ion-content padding="true">
 
-  <body>
-    <div class="game_2-layout" >
-      <button class="button button-full button-balanced game_2-button">CACA</button>
-      <button class="button button-full button-positive game_2-button">PIPI</button>
+
+  <body padding="true" >
+
+    <div class="cards" style="background-color: #535267">
+    <div class="card" >
+      <div class="item item-text-wrap" style="background-color : orange; color: white; font-size: 150%;font-weight: bold;">
+        {{questions[0].english}}
+      </div>
     </div>
-       <ul>
-      <li ng-repeat="question in questions">
-          <p>{{question.english}}</p>
-      </li>
-    </ul>
+    <div class="card">
+      <div class="item item-text-wrap" style="background-color : orange; color: white; font-size: 150%;font-weight: bold;">
+        {{questions[0].french}}
+      </div>
+    </div>
+  </div>
 
+  <div class="answer-button">
+
+    <button class="button choice-button">
+      Right
+    </button>
+    <button class="button choice-button">
+      Wrong
+    </button>
+
+  </div>
   </body>
 
-</ion-content>
+
 
 
 

@@ -71,6 +71,37 @@ width:100%;
   }
 }
 
+.card {
+  //height: 140px;
+  text-align: center;
+  .item-text-wrap {
+    height : 100%;
+    width:100%;
+    text-align: center;
+  }
+}
+
+.cards {
+  text-align: center;
+  padding-top: 30px;
+  height: 50%;
+  .card {
+    text-align: center;
+  }
+}
+.answer-button {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  .choice-button {
+    height: 50%;
+
+  }
+}
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 

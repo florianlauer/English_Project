@@ -3,7 +3,7 @@ app.controller('game2Ctrl', function ($scope, bddFactory) {
 
 		var questions =  bddFactory.getExpressions();
 		$scope.questions = questions;
-		console.log(questions);
+		console.log(questions[0]);
 
 
 
