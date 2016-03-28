@@ -10,6 +10,7 @@ var englishTokens = ['is',
 'the',
 'to',
 'a',
+'z',
 'of',
 "don't",
 "do",
@@ -112,10 +113,10 @@ $scope.answer = function answer(answer){
 
 
 
-    if(JSON.parse( window.localStorage.getItem( `score_game_1` )) == null || window.localStorage.getItem( `score_game_1` ) < $scope.score)
+    if(JSON.parse( window.localStorage.getItem('score_game_1')) == null || window.localStorage.getItem('score_game_1') < $scope.score)
     {
         
-        window.localStorage.setItem( `score_game_1`, JSON.stringify($scope.score));
+        window.localStorage.setItem('score_game_1', JSON.stringify($scope.score));
         endMessage.template = 'BEST SCORE !' + endMessage.template;
 
     }

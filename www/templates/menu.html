@@ -5,35 +5,31 @@
 
 
 </ion-content>
+<div class = "grid_layout" style="height : 100%; width: 100%;padding : 2%;padding-top : 40px;background-color : #333340; ">
 
-<div class = "grid_layout" style="">
+
+
+
 
     <div class="row">
       <div class="col no-padding">
-        <button class="button button-block button-balanced menu-button" ui-sref="rules_1">
-        Game 1
+        <button class="button button-block button-balanced menu-button" ui-sref="rules_1" style="background-color : #535267;background-image : url('img/game1.png');background-size: contain;background-position: center; background-repeat: no-repeat;">
         </button>
       </div>
-
+    </div>
+    
+    <div class="row">
       <div class="col no-padding">
-          <button class="button button-block button-balanced menu-button" ui-sref="rules_2">
-        Game 2
-          </button>
+          <button class="button button-block button-balanced menu-button" ui-sref="rules_2" style="background-color : #535267;background-image : url('img/game2.png');background-size: contain;background-position: center; background-repeat: no-repeat;">
+        </button>
       </div>
     </div>
 
-    <div class="row ">
-      <div class="col no-padding">
-        <button class="button button-block button-balanced menu-button" ui-sref="rules_3">
-        Game 3
-        </button></div>
-      <div class="col no-padding">
-        <button class="button button-block button-balanced menu-button" ui-sref="rules_4">
-        Game 4
-        </button>
+    
     </div>
-    </div>
-</div>
+<p style = "position: absolute;top: 50%;left : 25%;padding : 2%;border-radius : 20px;;color:white; background-color : orange; font-size : 20px;width: 50%;text-align: center;">
+      <span class="icon ion-chevron-down"></span>  Choose your game !  <span class="icon ion-chevron-up"></span>
+    </p>
 
 
 </ion-view>
