@@ -101,7 +101,7 @@ app.factory('bddFactory', function() {
     {'english' : 'Bite off more than one can chew', 'french' : ' Prendre plus de responsabilités ou d\'engagements que l\'on peut gérer. / Avoir les yeux plus gros que le ventre.'},
     {'english' : 'Bite the bullet', 'french' : ' Supporter une situation douloureuse ou désagréable qui est inévitable.'},
     {'english' : 'Bite the dust', 'french' : ' Euphémisme pour mourir ou la mort.'},
-    {'english' : 'Break a leg', 'french' : ' Un proverbe issu du théâtre qui signifie ', 'french' : 'bonne chance', 'french' : '.'},
+    {'english' : 'Break a leg', 'french' : ' Un proverbe issu du théâtre qui signifie bonne chance.'},
     {'english' : 'Burn the midnight oil', 'french' : ' Travailler tard dans la nuit (fait allusion à la période précédant l\'éclairage électrique) .'},
     {'english' : 'Bust one\'s chops', 'french' : ' Dire des choses destinées à harceler ou à pousser quelqu\'un.'},
     {'english' : 'By the seat of one\'s pants', 'french' : ' Faire quelque chose instinctivement ou faire quelque chose sans préparation préalable.'},

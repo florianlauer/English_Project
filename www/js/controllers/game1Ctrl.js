@@ -41,7 +41,7 @@ var expressions = [
 {'english' : 'Bite off more than one can chew', 'french' : ' Prendre plus de responsabilités ou d\'engagements que l\'on peut gérer. / Avoir les yeux plus gros que le ventre.'},
 {'english' : 'Bite the bullet', 'french' : ' Supporter une situation douloureuse ou désagréable qui est inévitable.'},
 {'english' : 'Bite the dust', 'french' : ' Euphémisme pour mourir ou la mort.'},
-{'english' : 'Break a leg', 'french' : ' Un proverbe issu du théâtre qui signifie ', 'french' : 'bonne chance', 'french' : '.'},
+{'english' : 'Break a leg', 'french' : ' Un proverbe issu du théâtre qui signifie bonne chance.'},
 {'english' : 'Burn the midnight oil', 'french' : ' Travailler tard dans la nuit (fait allusion à la période précédant l\'éclairage électrique) .'},
 {'english' : 'Bust one\'s chops', 'french' : ' Dire des choses destinées à harceler ou à pousser quelqu\'un.'},
 {'english' : 'By the seat of one\'s pants', 'french' : ' Faire quelque chose instinctivement ou faire quelque chose sans préparation préalable.'},
@@ -105,7 +105,7 @@ $scope.answer = function answer(answer){
      template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span> CONGRATULATIONS <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span></p><p>SCORE : '+ $scope.score +'</p>',
 
    };
-    
+
 
 
 
@@ -115,14 +115,14 @@ $scope.answer = function answer(answer){
 
     if(JSON.parse( window.localStorage.getItem('score_game_1')) == null || window.localStorage.getItem('score_game_1') < $scope.score)
     {
-        
+
         window.localStorage.setItem('score_game_1', JSON.stringify($scope.score));
         endMessage.template = 'BEST SCORE !' + endMessage.template;
 
     }
-    
-    $ionicPopup.alert(endMessage);    
-  
+
+    $ionicPopup.alert(endMessage);
+
     $state.go('rules_1');
     $scope.score = 0;
     $scope.remaining = 10;
@@ -139,8 +139,8 @@ $scope.answer = function answer(answer){
 
   if(answer == $scope.question.response){
     $scope.score++;
-    
-   
+
+
     message = {
      template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-checkmark-round" style = "color: green; font-weight : 60px; font-size : 30px;"></span> ' + expressions[$scope.question.id].english + '</p> <br/>  <p>' + expressions[$scope.question.id].french + '</p>',
 
@@ -151,11 +151,11 @@ $scope.answer = function answer(answer){
      template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + expressions[$scope.question.id].english  + '</p> <br/><p> <span style="text-decoration: line-through;"">' + $scope.question.answers[answer] + '</span>  <span class="icon ion-arrow-right-c" style="color: green;"></span> ' + $scope.question.answers[$scope.question.response] + ' </p>  <p>' + expressions[$scope.question.id].french + '</p> <br/> ',
 
    };
-  } 
+  }
   $ionicPopup.alert(message);
 
   $scope.question = selectQuestion();
-  
+
 
 }
 

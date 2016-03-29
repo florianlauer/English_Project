@@ -19,16 +19,17 @@
     </div>
   </div>
 
-  <div class="answer-button">
+  <div class="answer-button" style="background-color: #535267">
 
-    <img class="button choice-button" src="/img/Right.png" ng-click="answerRight(1)">
-
-  </img>
-    <img class="button choice-button" src="/img/Wrong.png" ng-click="answerRight(0)">
+    <img class="button choice-button" style="background-color: #535267" src="/img/Right.png" ng-click="answerRight(1)">
 
   </img>
+    <img class="button choice-button" style="background-color: #535267" src="/img/Wrong.png" ng-click="answerRight(0)">
 
-  {{score}}
+  </img>
+
+  <p style="font-size : 30px;width:100%;text-align:right;position: absolute; bottom: 50%;right : 5%;color:white;"> {{score}}<span style="font-size : 20px";> points</span></p>
+  <p style="font-size : 20px;position: absolute;text-align:left; bottom: 50%;color:white;left: 2%;width: 95%;">Question {{10 - remaining}}/10</p>
 
   </div>
   </body>
