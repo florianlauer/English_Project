@@ -1,5 +1,5 @@
 
-app.controller('game2Ctrl', function ($scope, bddFactory, $ionicPopup) {
+app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 
 		var questions =  bddFactory.getExpressions();
 		$scope.questions = questions;
@@ -9,7 +9,7 @@ app.controller('game2Ctrl', function ($scope, bddFactory, $ionicPopup) {
 		$scope.remaining = 10;
 		$scope.question = selectQuestion();
 		console.log(questions[0]);
-
+		var i=-1;
 
 
 		/*
@@ -20,6 +20,32 @@ app.controller('game2Ctrl', function ($scope, bddFactory, $ionicPopup) {
 		Sinon : On prend une phrase au hasard dans les 4 restantes
 
 		*/
+		$scope.answer = function(i) {
+			i++;
+			return $scope.question.answers[i];
+
+		}
+
+		$scope.answerRight = function answerRight() {
+
+
+			if ($scope.question.response .localeCompare($scope.question.question.french) == 0) {
+				console.log('bravo pd');
+				message = {
+		     template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-checkmark-round" style = "color: green; font-weight : 60px; font-size : 30px;"></span> ' + 'Congrats' + '</p> <br/>',
+
+		   };
+			}
+			else {
+				console.log('t nul');
+				message = {
+		     template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + 'Shit'  + '</p> <br/><p> <span style="text-decoration: line-through;"">',
+
+		   };
+			}
+			$ionicPopup.alert(message);
+			$scope.answers[4];
+		}
 
 		$scope.answer = function answer() {
 
