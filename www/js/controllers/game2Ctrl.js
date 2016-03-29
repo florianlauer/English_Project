@@ -8,9 +8,10 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 		$scope.answerRem = 6;
 		$scope.remaining = 10;
 		$scope.question = selectQuestion();
-		console.log(questions[0]);
-		var i=-1;
-
+		$scope.score = 0;
+		console.log($scope.question.answers[0]);
+		var i=0;
+		$scope.answer = $scope.question.answers[0];
 
 		/*
 		On selectionne une phrase en langage1
@@ -20,72 +21,63 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 		Sinon : On prend une phrase au hasard dans les 4 restantes
 
 		*/
-		$scope.answer = function(i) {
-			i++;
-			return $scope.question.answers[i];
-
-		}
-
-		$scope.answerRight = function answerRight() {
 
 
-			if ($scope.question.response .localeCompare($scope.question.question.french) == 0) {
-				console.log('bravo pd');
-				message = {
-		     template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-checkmark-round" style = "color: green; font-weight : 60px; font-size : 30px;"></span> ' + 'Congrats' + '</p> <br/>',
-
-		   };
-			}
-			else {
-				console.log('t nul');
-				message = {
-		     template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + 'Shit'  + '</p> <br/><p> <span style="text-decoration: line-through;"">',
-
-		   };
-			}
-			$ionicPopup.alert(message);
-			$scope.answers[4];
-		}
-
-		$scope.answer = function answer() {
 
 
-			var answer;
+		$scope.answerRight = function answerRight(u) {
 
-			if($scope.remaining == 1){
+			if($scope.remaining > 0){
+			if (i<5) {
+				i++;
+				$scope.answer = $scope.question.answers[i];
+				console.log($scope.question.answers[i]);
+				if ($scope.question.answers[i].localeCompare($scope.question.question.french) == 0 && u==1) {
+					console.log('bravo pd');
+					$scope.score = $scope.score +6;
+					message = {
+			     template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-checkmark-round" style = "color: green; font-weight : 60px; font-size : 30px;"></span> ' + 'Congrats' + '</p> <br/>',
+
+			   };
+				 $scope.remaining--;
+				 $scope.question = selectQuestion();
+				 $scope.answer = $scope.question.answers[0];
+				}
+				else if ($scope.question.answers[i].localeCompare($scope.question.question.french) == 0 && u==0) {
+					message = {
+			     template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + 'That was the good answer :-('  + '</p> <br/><p> <span style="text-decoration: line-through;"">',
+
+			   };
+					$ionicPopup.alert(message);
+					$scope.score = $scope.score -1;
+					$scope.remaining--;
+ 				 	$scope.question = selectQuestion();
+ 				 	$scope.answer = $scope.question.answers[0];
+				}
+				}
+				else {
+					console.log('t nul');
+					$scope.score = $scope.score -1;
+					message = {
+			     template: ' <p style="font-weight : bold; border-bottom : 1px red solid;";> <span class="icon ion-close-round" style = "color: red; font-weight : 60px; font-size : 30px;"/></span> ' + 'Shit'  + '</p> <br/><p> <span style="text-decoration: line-through;"">',
+
+			   };
+				}
+				$ionicPopup.alert(message);
+
+			}else {
 				var endMessage = {
 				 template: ' <p style="font-weight : bold; border-bottom : 1px green solid;";> <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span> CONGRATULATIONS <span class="icon ion-ios-star" style = "color: green; font-weight : 60px; font-size : 30px;"></span></p><p>SCORE : '+ $scope.score +'</p>',
 
 			 };
 
-
-
 			$ionicPopup.alert(endMessage);
  	    $state.go('rules_2');
  	    $scope.score = 0;
- 	    $scope.remaining = 10;
-		}
-		else{
+			}
+			}
 
-	    $scope.remaining--;
 
-	  }
-
-		var message;
-
-		if(answer == $scope.question.response){
-	    $scope.score++;
-
-	    message = 'yay!';
-
-	  }else{
-	    message = 'tu es nul';
-	  }
-	  $ionicPopup.alert(message);
-
-	  $scope.answer();
-
-	}
 
 
 
@@ -95,7 +87,7 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 
 			// ID random d'une question
 		  var randQuestionId = Math.floor(Math.random() * questions.length);
-			console.log(randQuestionId);
+			//console.log(randQuestionId);
 
 		  while(questionPassed.indexOf(randQuestionId) != -1){ // Si cet ID est dans le tableau des questions passées, on en choisit un nouveau
 
@@ -110,7 +102,7 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 			var answers = [];
 			var goodAns = questions[randQuestionId].french;
 			answers.push(goodAns);
-			console.log('init TAB = '+ answers);
+			//console.log('init TAB = '+ answers);
 			var i =1;
 			while (i<6) {
 				randId = Math.floor(Math.random() * questions.length);
@@ -118,14 +110,14 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 				if (answers.indexOf(answer) === -1) {
 					answers.push(answer);
 					i++;
-					console.log('Le nouveau tableau est : ' + answers);
+					//console.log('Le nouveau tableau est : ' + answers);
 				}
 				else if ( answers.indexOf(answer) > -1 ) {
-					 console.log(answer + ' existe déjà dans le tableau.');
+					 //console.log(answer + ' existe déjà dans le tableau.');
 				}
 			}
-			console.log('FINAL '+ answers.toString());
-			console.log(answers.length);
+			//console.log('FINAL '+ answers.toString());
+			//console.log(answers.length);
 
 
 			var mixAnswers = ['','','','','',''];
@@ -146,7 +138,7 @@ app.controller('game2Ctrl', function ($scope, $state, bddFactory, $ionicPopup) {
 		  }
 
 			console.log(mixAnswers);
-			console.log(mixAnswers.length);
+			//console.log(mixAnswers.length);
 
 
 		  return {'question' : question, 'response' : goodAns, 'answers' : mixAnswers};

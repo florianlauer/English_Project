@@ -21,12 +21,14 @@
 
   <div class="answer-button">
 
-    <img class="button choice-button" src="/img/Right.png" ng-click="answerRight()">
+    <img class="button choice-button" src="/img/Right.png" ng-click="answerRight(1)">
 
   </img>
-    <img class="button choice-button" src="/img/Wrong.png" ng-click="answer()">
+    <img class="button choice-button" src="/img/Wrong.png" ng-click="answerRight(0)">
 
   </img>
+
+  {{score}}
 
   </div>
   </body>
