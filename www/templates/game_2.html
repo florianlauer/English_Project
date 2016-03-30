@@ -21,12 +21,12 @@
 
   <div class="answer-button" style="background-color: #535267">
 
-    <img class="button choice-button" style="background-color: #535267" src="/img/Right.png" ng-click="answerRight(1)">
+    <button class="button choice-button" style="width:48%; background-color: #535267;background-color : #535267;background-image : url('img/Right.png');background-size: contain;background-position: center; background-repeat: no-repeat;" ng-click="answerRight(1)">
 
-  </img>
-    <img class="button choice-button" style="background-color: #535267" src="/img/Wrong.png" ng-click="answerRight(0)">
+  </button>
+    <button class="button choice-button" style="width:48%; background-color: #535267;background-color : #535267;background-image : url('img/Wrong.png');background-size: contain;background-position: center; background-repeat: no-repeat;" ng-click="answerRight(0)">
 
-  </img>
+  </button>
 
   <p style="font-size : 30px;width:100%;text-align:right;position: absolute; bottom: 50%;right : 5%;color:white;"> {{score}}<span style="font-size : 20px";> points</span></p>
   <p style="font-size : 20px;position: absolute;text-align:left; bottom: 50%;color:white;left: 2%;width: 95%;">Question {{10 - remaining}}/10</p>
